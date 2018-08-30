@@ -10,5 +10,5 @@ import java.util.List;
  * @Description
  */
 public interface PersonService {
-    List<Person> findByName(String name);
+    List<Person> findByName(String name, int depth);
 }

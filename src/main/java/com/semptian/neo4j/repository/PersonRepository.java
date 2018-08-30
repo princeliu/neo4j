@@ -1,6 +1,7 @@
 package com.semptian.neo4j.repository;
 
 import com.semptian.neo4j.entity.Person;
+import org.springframework.data.neo4j.annotation.Depth;
 import org.springframework.data.neo4j.annotation.Query;
 import org.springframework.data.neo4j.repository.Neo4jRepository;
 import org.springframework.data.repository.query.Param;
@@ -17,7 +18,7 @@ import java.util.List;
 @Repository
 public interface PersonRepository extends Neo4jRepository<Person, Long> {
 
-    List<Person> findByName(@Param("name") String name);
+    List<Person> findByName(@Param("name") String name, @Depth int depth);
 
     @Query("MATCH (t:Person) WHERE t.name =~ ('(?i).*'+{name}+'.*') RETURN t")
     Collection<Person> findByPersonName(@Param("name") String name);

@@ -191,7 +191,7 @@ public class Neo4jApplicationTests {
     @Test
     public void addReaderAndWriter(){
 
-        Optional<Book> bookOptional = bookRepository.findById(108L);
+        Optional<Book> bookOptional = bookRepository.findById(25L);
         Book book = bookOptional.get();
 
         Calendar calendar = Calendar.getInstance();
@@ -200,8 +200,8 @@ public class Neo4jApplicationTests {
         calendar.set(Calendar.DAY_OF_MONTH, 9);
 
         Person person1 = new Person();
-        person1.setName("洛克");
-        person1.setPhone("18998989789");
+        person1.setName("杰克");
+        person1.setPhone("18998988888");
         person1.setSex("男");
 
         Set<ReaderOf> readers = new HashSet<>();
@@ -219,6 +219,39 @@ public class Neo4jApplicationTests {
 
         personRepository.save(person1);
         bookRepository.save(book);
+    }
+
+    @Test
+    public void addBook(){
+
+        Optional<Person> personOptional = personRepository.findById( 81L);
+        Person person = personOptional.get();
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.YEAR, 2017);
+        calendar.set(Calendar.MONDAY, 10);
+        calendar.set(Calendar.DAY_OF_MONTH, 9);
+
+        Set<WriterOf> writerOfs = new HashSet<>();
+        WriterOf writerOf = new WriterOf();
+        writerOf.setStartDate(calendar.getTime());
+        calendar.add(Calendar.DAY_OF_MONTH, -10);
+        writerOf.setEndDate(calendar.getTime());
+
+        Book book1 = new Book();
+        book1.setName("花样年华");
+        writerOf.setBook(book1);
+        writerOf.setWriter(person);
+
+        writerOfs.add(writerOf);
+
+        person.setWritings(writerOfs);
+        book1.setWriters(writerOfs);
+
+        bookRepository.save(book1);
+        personRepository.save(person);
+
+
     }
 
     @Test
@@ -246,11 +279,42 @@ public class Neo4jApplicationTests {
     @Test
     public void findByName() {
 
-        List<Person> people = personService.findByName("洛克");
+        List<Person> people = personService.findByName("洛克", 2);
 
         people.forEach(person -> {
 
-            System.out.println(person.getName());
+            Set<WriterOf> writerOfs = person.getWritings();
+            Set<ReaderOf> readerOfs = person.getReadBooks();
+            if(readerOfs != null && readerOfs.size() > 0){
+                readerOfs.forEach(readerOf -> {
+
+                    System.out.println(readerOf.getBook().getName());
+
+                    Set<WriterOf> writerOfs1 = readerOf.getBook().getWriters();
+                    if (writerOfs1 != null && writerOfs1.size() > 0) {
+                        writerOfs1.forEach(writerOf1 -> {
+                            System.out.println(writerOf1.getWriter().getName());
+                        });
+                    }
+
+                });
+            }
+
+            if (writerOfs != null && writerOfs.size() > 0){
+                writerOfs.forEach(writerOf -> {
+
+                    System.out.println(writerOf.getBook().getName());
+                    Set<ReaderOf> readerOfs1 = writerOf.getBook().getReaders();
+
+                    if(readerOfs1 != null && readerOfs1.size() > 0){
+                        readerOfs1.forEach(readerOf1 -> {
+
+                            System.out.println(readerOf1.getReader().getName());
+                        });
+                    }
+                });
+            }
+
         });
     }
 

@@ -18,8 +18,8 @@ public class PersonServiceImpl implements PersonService {
     @Autowired
     PersonRepository personRepository;
     @Override
-    public List<Person> findByName(String name) {
-        List<Person> personList = personRepository.findByName(name);
+    public List<Person> findByName(String name, int depth) {
+        List<Person> personList = personRepository.findByName(name, depth);
         return personList;
     }
 }
