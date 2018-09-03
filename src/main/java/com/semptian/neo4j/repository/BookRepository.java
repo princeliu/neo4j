@@ -25,3 +25,5 @@ public interface BookRepository extends Neo4jRepository<Book, Long>{
 //    @Query("MATCH (n:Book) WHERE n.name = {0} WITH n RETURN n limit 1")
     Book findByName(String name, @Depth int depth);
 }
+
+

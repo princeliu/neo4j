@@ -1,0 +1,76 @@
+package com.semptian.neo4j.entity;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.semptian.neo4j.entity.relationships.ActorIn;
+import com.semptian.neo4j.entity.relationships.Directed;
+import com.semptian.neo4j.entity.relationships.Invested;
+import org.neo4j.ogm.annotation.NodeEntity;
+import org.neo4j.ogm.annotation.Relationship;
+
+import java.util.Set;
+
+/**
+ * @Author Princeliu
+ * @Date 2018/8/31 14:27
+ * @Description
+ */
+@NodeEntity
+public class Director extends Person{
+
+    private int level;
+    private String description;
+
+    @Relationship(type="ACTED_IN")
+    @JsonProperty("参演")
+    private Set<ActorIn> actorIns;
+
+    @Relationship(type="DIRECTED")
+    @JsonProperty("导演")
+    private Set<Directed> directeds;
+
+    @Relationship(type="INVESTED")
+    @JsonProperty("投资")
+    private Set<Invested> investeds;
+
+    public int getLevel() {
+        return level;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
+    }
+
+    @Override
+    public String getDescription() {
+        return description;
+    }
+
+    @Override
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Set<ActorIn> getActorIns() {
+        return actorIns;
+    }
+
+    public void setActorIns(Set<ActorIn> actorIns) {
+        this.actorIns = actorIns;
+    }
+
+    public Set<Directed> getDirecteds() {
+        return directeds;
+    }
+
+    public void setDirecteds(Set<Directed> directeds) {
+        this.directeds = directeds;
+    }
+
+    public Set<Invested> getInvesteds() {
+        return investeds;
+    }
+
+    public void setInvesteds(Set<Invested> investeds) {
+        this.investeds = investeds;
+    }
+}

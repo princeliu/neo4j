@@ -1,6 +1,8 @@
 package com.semptian.neo4j.entity;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.semptian.neo4j.entity.base.DescriptiveEntity;
+import com.semptian.neo4j.entity.relationships.Invested;
 import com.semptian.neo4j.entity.relationships.ReaderOf;
 import com.semptian.neo4j.entity.relationships.WriterOf;
 import org.neo4j.ogm.annotation.*;
@@ -14,10 +16,8 @@ import java.util.Set;
  * @Description
  */
 @NodeEntity
-public class Person {
-    @Id
-    private Long id;
-    private String name ;
+public class Person extends DescriptiveEntity {
+
     private String phone;
     private String sex;
     @Relationship(type="WRITER_OF")
@@ -28,21 +28,9 @@ public class Person {
     @JsonProperty("读书")
     private Set<ReaderOf> readBooks;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
+    @Relationship(type="INVESTED", direction = Relationship.INCOMING)
+    @JsonProperty("投资")
+    private Set<Invested> investeds;
 
     public String getPhone() {
         return phone;
@@ -74,5 +62,13 @@ public class Person {
 
     public void setReadBooks(Set<ReaderOf> readBooks) {
         this.readBooks = readBooks;
+    }
+
+    public Set<Invested> getInvesteds() {
+        return investeds;
+    }
+
+    public void setInvesteds(Set<Invested> investeds) {
+        this.investeds = investeds;
     }
 }

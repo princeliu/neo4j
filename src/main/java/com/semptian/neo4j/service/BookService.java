@@ -17,4 +17,6 @@ public interface BookService {
     Book findByName(String name, int depth);
 
     Optional<Book> findOneById(long id, int depth);
+
+    Book save(Book book);
 }

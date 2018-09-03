@@ -14,10 +14,6 @@ import java.util.Set;
 @NodeEntity
 public class Book extends DescriptiveEntity {
 
-   @Id
-   @GeneratedValue
-   private Long id;
-
    @Relationship(type="WRITER_OF", direction=Relationship.INCOMING)
    @JsonProperty("作者")
    private Set<WriterOf> writers;
@@ -26,15 +22,6 @@ public class Book extends DescriptiveEntity {
    @JsonProperty("读者")
    private Set<ReaderOf> readers;
 
-   @Override
-   public Long getId() {
-      return id;
-   }
-
-   @Override
-   public void setId(Long id) {
-      this.id = id;
-   }
 
    public Set<WriterOf> getWriters() {
       return writers;

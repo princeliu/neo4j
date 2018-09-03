@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * @Author Princeliu
@@ -21,5 +22,15 @@ public class PersonServiceImpl implements PersonService {
     public List<Person> findByName(String name, int depth) {
         List<Person> personList = personRepository.findByName(name, depth);
         return personList;
+    }
+
+    @Override
+    public Person save(Person person) {
+        return personRepository.save(person);
+    }
+
+    @Override
+    public Optional<Person> findById(long id) {
+        return personRepository.findById(id);
     }
 }
