@@ -395,4 +395,23 @@ public class Neo4jApplicationTests {
         directorService.save(director);
     }
 
+    @Test
+    public void testQuery(){
+
+        List<Person> people = personService.getPersonByQuery("卡梅隆", 2000);
+
+        people.forEach(person -> {
+            System.out.println(person.getName());
+        });
+    }
+
+    @Test
+    public void testMovieQuery(){
+
+        List<Movie> movies = movieService.getMovieByQuery("卡梅隆", 8);
+
+        movies.forEach(movie -> {
+            System.out.println(movie.getName());
+        });
+    }
 }

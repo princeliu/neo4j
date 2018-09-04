@@ -33,4 +33,9 @@ public class PersonServiceImpl implements PersonService {
     public Optional<Person> findById(long id) {
         return personRepository.findById(id);
     }
+
+    @Override
+    public List<Person> getPersonByQuery(String name, double count) {
+        return personRepository.getPersonByQuery(name, count);
+    }
 }

@@ -20,4 +20,9 @@ public interface MovieReporitory extends Neo4jRepository<Movie, Long> {
     List<Movie> customQuery(String name);
 
     Movie findByName(String name, @Depth int depth);
+
+    @Query("match(p:Person {name: {0}})-[r:DIRECTED]->(m:Movie)" +
+            "where m.rating >{1}" +
+            "return m;")
+    List<Movie> getMovieByQuery(String name, int rating);
 }

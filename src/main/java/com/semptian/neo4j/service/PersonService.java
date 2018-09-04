@@ -17,4 +17,6 @@ public interface PersonService {
     Person save(Person person);
 
     Optional<Person> findById(long id);
+
+    List<Person> getPersonByQuery(String name, double count);
 }

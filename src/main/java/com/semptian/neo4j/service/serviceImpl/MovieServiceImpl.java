@@ -39,4 +39,9 @@ public class MovieServiceImpl implements MovieService {
     public Movie save(Movie movie) {
         return movieReporitory.save(movie);
     }
+
+    @Override
+    public List<Movie> getMovieByQuery(String name, int rating) {
+        return movieReporitory.getMovieByQuery(name, rating);
+    }
 }

@@ -19,4 +19,6 @@ public interface MovieService {
     Optional<Movie> findOneById(long id, int depth);
 
     Movie save(Movie movie);
+
+    List<Movie> getMovieByQuery(String name, int rating);
 }

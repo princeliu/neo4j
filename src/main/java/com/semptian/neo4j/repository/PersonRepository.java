@@ -21,4 +21,9 @@ public interface PersonRepository extends Neo4jRepository<Person, Long> {
 
     @Query("match(n:Person {name:{0}}) return n;")
     List<Person> findByPersonName(@Param("name") String name);
+
+    @Query("match(p:Person {name: {0}})-[r:INVESTED]->(p2:Person)" +
+            "where r.investCount >={1}" +
+            "return p2;")
+    List<Person> getPersonByQuery(String name, double investedCount);
 }
