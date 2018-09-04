@@ -147,47 +147,9 @@ public class Neo4jApplicationTests {
 
         book1.setWriters(writings);
         book1.setReaders(readers);
-        book1 = bookService.save(book1);
-        person1 = personService.save(person1);
-        person2 = personService.save(person2);
-//        assertNotNull(book1);
-//        assertNotNull(book1.getWriters());
-//        assertEquals(1, book1.getWriters().size());
-//
-//        // Test add readers
-//        Book book2 = new Book();
-//        book2.setName("梦里看花");
-//        book2 = bookRepository.save(book2);
-//        assertNotNull(book2);
-//        assertNull(book2.getReaders());
-//
-//        writings = new HashSet<WriterOf>();
-//        writer = new WriterOf();
-//        writer.setBook(book2);
-//        writer.setWriter(person1);
-//        writings.add(writer);
-//
-//
-//        book2.setWriters(writings);
-//        book2 = bookRepository.save(book2);
-//        assertNotNull(book2.getWriters());
-//        assertEquals(1, book2.getWriters().size());
-//
-//        // Verify that the person entity is in sync
-//        person1 = personRepository.findById(person1.getId()).get();
-//        assertNotNull(person1.getWritings());
-//        assertEquals(2, person1.getWritings().size());
-//
-//        // Test remove writers
-//        person1.getWritings().removeAll(book1.getWriters());
-//        person1.getWritings().removeAll(book2.getWriters());
-//        book2.setWriters(null);
-//        book2 = bookRepository.save(book2);
-//        book1.setWriters(null);
-//        book1 = bookRepository.save(book1);
-//
-//        person1 = personRepository.findById(person1.getId()).get();
-//        assertNotNull(person1.getWritings());
+        bookService.save(book1);
+        personService.save(person1);
+        personService.save(person2);
     }
 
     @Test

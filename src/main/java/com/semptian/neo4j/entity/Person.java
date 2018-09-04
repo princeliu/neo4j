@@ -5,8 +5,8 @@ import com.semptian.neo4j.entity.base.DescriptiveEntity;
 import com.semptian.neo4j.entity.relationships.Invested;
 import com.semptian.neo4j.entity.relationships.ReaderOf;
 import com.semptian.neo4j.entity.relationships.WriterOf;
-import org.neo4j.ogm.annotation.*;
-import org.springframework.data.annotation.Id;
+import org.neo4j.ogm.annotation.NodeEntity;
+import org.neo4j.ogm.annotation.Relationship;
 
 import java.util.Set;
 
